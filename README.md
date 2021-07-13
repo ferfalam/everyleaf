@@ -14,5 +14,10 @@ Task_columns
 >>deadline : date  
 >>status : string  
 >>priority : boolean  
->>tag : string  
+>>tag_id : id  
 >>user_id : int  
+
+Model : Tag  
+Tags_column  
+>>id : int  
+>>tag : string  
