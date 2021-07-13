@@ -1,11 +1,11 @@
 # README  
 
 Model : User  
-User_columns
+User_columns  
 >>id : int  
 >>username : string  
 >>password : string  
-
+  
 Model : Task  
 Task_columns  
 >>id : int  
