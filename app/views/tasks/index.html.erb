@@ -1,0 +1,24 @@
+<h1>Task list</h1>
+<br>
+<p style="color:green"> <%=notice%> </p>
+<%= link_to 'New', new_task_path %>
+<div>
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Details</th>
+            <th colspan="3"></th>
+        </thead>
+        <tbody>
+            <% @tasks.each do |task| %>
+                <tr>
+                    <td> <%=task.name%> </td>
+                    <td> <%=task.details%> </td>    
+                    <td><%= link_to 'Edit', edit_task_path(task) %></td>
+                    <td><%= link_to 'Show', task_path(task) %></td>
+                    <td><%= link_to "Delete", task_path(task), method: :delete, data:{ confirm: "Are you sure ?"} %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
