@@ -1,9 +1,8 @@
 require 'rails_helper'
 RSpec.describe 'task manager', type: :system do
+    let!(:task) { FactoryBot.create(:task, name: 'task') }
     before do
-        FactoryBot.create(:task, name: 'factory create name１')
-        FactoryBot.create(:task, name: 'factory create name 2')
-        FactoryBot.create(:second_task, name: 'factory create name 3', details: 'factory create details')
+        visit tasks_path
     end
     
     describe 'Create new task' do
@@ -24,7 +23,15 @@ RSpec.describe 'task manager', type: :system do
 
                 visit tasks_path
 
-                expect(page).to have_content 'factory'
+                expect(page).to have_content 'task'
+            end
+        end
+
+        context 'When tasks are arranged in descending order of creation date and time' do
+            it 'New task is displayed at the top' do
+                task_list = all('.task-row') 
+                task_view_name = task_list[0].text.split(" ")[0]
+                expect(task_view_name).to eq task.name
             end
         end
     end
@@ -34,4 +41,5 @@ RSpec.describe 'task manager', type: :system do
             end
         end
     end 
+    
 end
