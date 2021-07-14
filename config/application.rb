@@ -10,6 +10,10 @@ module Everyleaf
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
+    config.timezone = "Europe/Paris"
+
+    I18n.config.available_locales = :en
+    I18n.default_locale = :en
 
     config.generators do |g|
       g.undefined_framework :rspec,
