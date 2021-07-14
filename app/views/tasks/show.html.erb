@@ -1,0 +1,8 @@
+<h1>Task</h1>
+
+<p style="color:green"> <%=notice%> </p>
+
+<strong>Name : </strong> <%=@task.name%> <br>
+<strong>Details : </strong> <%=@task.details%> <br>
+
+<%= link_to 'Back', tasks_path %> | <%= link_to 'Edit', edit_task_path(@task) %>
