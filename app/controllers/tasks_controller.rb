@@ -1,7 +1,29 @@
 class TasksController < ApplicationController
     before_action :set_task, only: [:edit, :show, :update, :destroy]
     def index
-      @tasks = Task.all.order(created_at: :desc)
+      if params[:sort_expired].present?
+        @tasks = Task.all.order(deadline: :asc)
+      else
+        @tasks = Task.all.order(created_at: :desc)
+      end
+
+      if params[:sort_priority].present?
+        @tasks = Task.all.order(priority: :desc)
+      else
+        @tasks = Task.all.order(created_at: :desc)
+      end
+
+      if params[:task].present?
+        if !params[:task][:name].empty? && !params[:task][:status].empty? 
+          @tasks = Task.where("name LIKE ?", "%#{params[:name]}%").where(status: params[:task][:status])
+        elsif !params[:task][:name].empty? 
+          @tasks = Task.where("name LIKE ?", "%#{params[:task][:name]}%")
+        elsif !params[:task][:status].empty? 
+          @tasks = Task.where(status: params[:task][:status])
+        else
+          @tasks = Task.all.order(created_at: :desc)
+        end
+      end
     end
   
     def new
@@ -21,6 +43,7 @@ class TasksController < ApplicationController
     end
   
     def update
+      # raise
       if @task.update(task_params)
         redirect_to tasks_path, notice: "Task updated successfully"
       else
@@ -42,7 +65,7 @@ class TasksController < ApplicationController
     end
   
     def task_params
-      params.require(:task).permit(:name, :details)
+      params.require(:task).permit(:name, :details, :deadline, :status, :priority)
     end
   
 end

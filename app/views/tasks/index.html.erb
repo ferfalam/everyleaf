@@ -1,24 +1,64 @@
-<h1>Task list</h1>
-<br>
-<p style="color:green"> <%=notice%> </p>
-<%= link_to 'New', new_task_path %>
-<div>
-    <table>
-        <thead>
-            <th>Name</th>
-            <th>Details</th>
-            <th colspan="3"></th>
-        </thead>
-        <tbody>
-            <% @tasks.each do |task| %>
-                <tr class="task-row">
-                    <td> <%=task.name%> </td>
-                    <td> <%=task.details%> </td>    
-                    <td><%= link_to 'Edit', edit_task_path(task) %></td>
-                    <td><%= link_to 'Show', task_path(task) %></td>
-                    <td><%= link_to "Delete", task_path(task), method: :delete, data:{ confirm: "Are you sure ?"} %></td>
-                </tr>
-            <% end %>
-        </tbody>
-    </table>
+<div class="container text-center mt-3">
+    <h1>Task list</h1>
+    
+    <% if notice.present? %>
+        <p class="alert alert-success"> <%=notice%> </p>
+    <% end %>
+    <%= form_with(scope: :task, local: true, url: tasks_path, method: :get) do |f| %>
+        <div class="row align-items-center">
+            <div class="col col-lg-4 form-group">
+                <%= f.label :name, "Name", class:"form-label" %>
+                <%= f.text_field :name, class:"mx-2 form-control" %>
+            </div>
+            <div class="col col-lg-4 form-group">
+                <%= f.label :status, "Status", class:"form-label" %>
+                <select name="task[status]" id="task_status" class="mx-2 form-control">
+                    <option value="unstarted">unstarted</option>
+                    <option value="progress">progress</option>
+                    <option value="complete">complete</option>
+                    <option value="" selected>All</option>
+                </select>
+            </div>
+            <%= f.text_field :search, value:true, hidden:true%>
+            <div class="col col-lg-4 form-group">
+                <%= f.submit "Search", class:"btn btn-sm btn-outline-success"%> 
+            </div>
+        </div>
+    <% end %>
+    
+    <div class="row my-4">
+        <div class="col col-6">
+        </div>
+        <div class="col col-6 text-right">
+            <%= link_to "sort by end deadline", tasks_path(sort_expired: "true"), class:"btn btn-sm btn-secondary" %> 
+            <%= link_to "sort by end priority", tasks_path(sort_priority: "true"), class:"btn btn-sm btn-secondary" %>
+        </div>
+    </div>
+
+    <div>
+        <table class="table-hover w-100 text-left">
+            <thead>
+                <th>Name</th>
+                <th>Details</th>
+                <th>Deadline</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th colspan="3"></th>
+            </thead>
+            <tbody>
+                <% @tasks.each do |task| %>
+                    <tr>
+                        <td class="task-name"> <%=task.name%> </td>
+                        <td> <%=task.details%> </td>    
+                        <td class="task-deadline"> <%=task.deadline%> </td>    
+                        <td class="task-status"> <%=task.status%> </td>    
+                        <td class="task-priority"> <%=task.priority%> </td>    
+                        <td><%= link_to 'Show', task_path(task), class:"btn btn-sm btn-outline-success" %></td>
+                        <td><%= link_to 'Edit', edit_task_path(task), class:"btn btn-sm btn-outline-warning" %></td>
+                        <td><%= link_to "Delete", task_path(task), method: :delete, data:{ confirm: "Are you sure ?"}, class:"btn btn-sm btn-outline-danger" %></td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
 </div>
