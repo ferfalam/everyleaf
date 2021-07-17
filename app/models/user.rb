@@ -14,7 +14,9 @@ class User < ApplicationRecord
                 self.admin = !self.admin
             end
         else
-            self.admin = !self.admin
+            if self.id
+                self.admin = !self.admin
+            end
         end
     end
     

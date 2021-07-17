@@ -41,10 +41,10 @@ class Admin::UsersController < ApplicationController
   
   def role
     @user = User.find(params[:id])
-    current = @user.admin
+    current_role = @user.admin
     @user.save(validate:false)
 
-    if current == @user.admin
+    if current_role == @user.admin
       redirect_to admin_users_path, notice: "You cannot cahnge your role. You are the only admin"
     else
       redirect_to admin_users_path, notice: "Role of #{@user.email} has been changed"
