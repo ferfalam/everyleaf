@@ -1,5 +1,5 @@
 User.create(
-    id: nil
+    id: nil,
     email: "john@gmail.com",
     password: "password",
     admin: true
