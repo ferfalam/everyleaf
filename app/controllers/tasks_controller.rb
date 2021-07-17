@@ -2,36 +2,38 @@ class TasksController < ApplicationController
     before_action :set_task, only: [:edit, :show, :update, :destroy]
     def index
       if params[:sort_expired].present?
-        @tasks = Task.all.order(deadline: :asc)
+        @tasks = current_user.tasks.order(deadline: :asc)
       else
-        @tasks = Task.all.order(created_at: :desc)
+        @tasks = current_user.tasks.order(created_at: :desc)
       end
 
       if params[:sort_priority].present?
-        @tasks = Task.all.order(priority: :desc)
+        @tasks = current_user.tasks.order(priority: :desc)
       else
-        @tasks = Task.all.order(created_at: :desc)
+        @tasks = current_user.tasks.order(created_at: :desc)
       end
 
       if params[:task].present?
         if !params[:task][:name].empty? && !params[:task][:status].empty? 
-          @tasks = Task.where("name LIKE ?", "%#{params[:name]}%").where(status: params[:task][:status])
+          @tasks = current_user.task.where("name LIKE ?", "%#{params[:name]}%").where(status: params[:task][:status])
         elsif !params[:task][:name].empty? 
-          @tasks = Task.where("name LIKE ?", "%#{params[:task][:name]}%")
+          @tasks = current_user.task.where("name LIKE ?", "%#{params[:task][:name]}%")
         elsif !params[:task][:status].empty? 
-          @tasks = Task.where(status: params[:task][:status])
+          @tasks = current_user.task.where(status: params[:task][:status])
         else
-          @tasks = Task.all.order(created_at: :desc)
+          @tasks = current_user.tasks.order(created_at: :desc)
         end
       end
     end
   
     def new
       @task = Task.new
+      @task.user_id = current_user.id
     end
   
     def create
       @task = Task.new(task_params)
+      @task.user_id = current_user.id
       if @task.save
         redirect_to tasks_path, notice: "Task created successfully"
       else
@@ -43,7 +45,6 @@ class TasksController < ApplicationController
     end
   
     def update
-      # raise
       if @task.update(task_params)
         redirect_to tasks_path, notice: "Task updated successfully"
       else

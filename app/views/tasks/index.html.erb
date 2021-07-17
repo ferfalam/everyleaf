@@ -1,9 +1,5 @@
 <div class="container text-center mt-3">
     <h1>Task list</h1>
-    
-    <% if notice.present? %>
-        <p class="alert alert-success"> <%=notice%> </p>
-    <% end %>
     <%= form_with(scope: :task, local: true, url: tasks_path, method: :get) do |f| %>
         <div class="row align-items-center">
             <div class="col col-lg-4 form-group">

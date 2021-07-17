@@ -2,6 +2,8 @@ class Task < ApplicationRecord
     validates :name, presence:true, length: {minimum:1, maximum:30}
 
     enum priority: {high:2, medium:1, low:0}
+    belongs_to :user
+
     def self.name_search(name)
         @task = Task.where(name: name)
     end

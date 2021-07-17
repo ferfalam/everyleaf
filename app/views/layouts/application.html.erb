@@ -12,11 +12,34 @@
   <body>
     <header class="nav p-3 text-white">
         <div class="nav-logo">DiveIntoCode</div>
-        <div class="links ml-3">
-          <%= link_to  "New Task", new_task_path, class:"btn btn-md btn-outline-primary mx-2" %>
-          <%= link_to  "Task List", tasks_path, class:"btn btn-md btn-outline-primary mx-2" %>
-        </div>
+        
+        <% if logged_in? %>
+          <div class="links ml-3">
+            
+            <% if current_user.admin %>
+              <%= link_to  "Create user", new_admin_user_path, class:"btn btn-md btn-outline-primary mx-2" %>
+              <%= link_to  "Administration", admin_users_path, class:"btn btn-md btn-outline-primary mx-2" %>
+            <% end %>
+            
+            <%= link_to  "New Task", new_task_path, class:"btn btn-md btn-outline-primary mx-2" %>
+            <%= link_to  "Task List", tasks_path, class:"btn btn-md btn-outline-primary mx-2" %>
+            <%= link_to  "Logout", session_path(current_user.id), method: :delete, class:"btn btn-outline-primary mr-3"  %>
+          </div>  
+        <% else %>
+          <div class="links ml-3">
+            <%= link_to  "Login", new_session_path, class:"btn btn-md btn-outline-primary mx-2" %>
+            <%= link_to  "Sign up", new_user_path, class:"btn btn-md btn-outline-primary mx-2" %>
+          </div>  
+        <% end %>
+
     </header>
+    
+    <% if notice.present? %>
+      <div class="alert alert-info">
+        <p> <%=notice%> </p>
+      </div>  
+    <% end %>
+    
     <%= yield %>
   </body>
 </html>
