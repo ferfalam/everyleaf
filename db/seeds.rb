@@ -1,6 +1,1 @@
-User.create(
-    id: nil,
-    email: "john@gmail.com",
-    password: "password",
-    admin: true
-)
+User.create(email: "john@example.com",password: "password",admin: false)

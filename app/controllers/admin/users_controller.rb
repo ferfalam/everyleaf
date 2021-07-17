@@ -45,7 +45,7 @@ class Admin::UsersController < ApplicationController
     @user.save(validate:false)
 
     if current_role == @user.admin
-      redirect_to admin_users_path, notice: "You cannot cahnge your role. You are the only admin"
+      redirect_to admin_users_path, notice: "You cannot change your role. You are the only admin"
     else
       redirect_to admin_users_path, notice: "Role of #{@user.email} has been changed"
     end

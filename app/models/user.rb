@@ -9,15 +9,14 @@ class User < ApplicationRecord
 
     private
     def change_role
-        if self.admin  
-            unless User.where(admin: true).count == 1  
+        unless self.new_record?
+            if self.admin  
+                unless User.where(admin: true).count == 1  
+                    self.admin = !self.admin
+                end
+            else
                 self.admin = !self.admin
-            end
-        else
-            if self.id
-                self.admin = !self.admin
-            end
+            end    
         end
     end
-    
 end
