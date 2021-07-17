@@ -1,5 +1,5 @@
 User.create(
-    email: "john@example.com",
+    email: "john@gmail.com",
     password: "password",
-    admin: "true"
+    admin: true
 )
