@@ -1,0 +1,36 @@
+<div class="container">
+    <h1>Profile</h1>
+    <div class="row d-flex">
+        <div class="col col-md-12 w-100 mb-4 text-center">
+            <table class="table">
+                <tr>
+                    <th>Email : </th>
+                    <td> <%=@user.email%> </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <table class="table-hover w-100 text-left">
+            <thead>
+                <th>Name</th>
+                <th>Details</th>
+                <th>Deadline</th>
+                <th>Status</th>
+                <th>Priority</th>
+            </thead>
+            <tbody>
+                <% @user.tasks.each do |task| %>
+                    <tr>
+                        <td class="task-name"> <%=task.name%> </td>
+                        <td> <%=task.details%> </td>    
+                        <td class="task-deadline"> <%=task.deadline%> </td>    
+                        <td class="task-status"> <%=task.status%> </td>    
+                        <td class="task-priority"> <%=task.priority%> </td>    
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>

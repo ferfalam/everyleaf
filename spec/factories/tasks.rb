@@ -5,6 +5,7 @@ FactoryBot.define do
       deadline {'17/07/2021'}
       status {'unstarted'}
       priority {2}
+      association :user, factory: :user
     end
 
     factory :second_task, class: Task do
@@ -13,5 +14,6 @@ FactoryBot.define do
         deadline {'17/07/2021'}
         status {'progress'}
         priority {0}
+        association :user, factory: :user_admin
     end
 end

@@ -1,0 +1,20 @@
+<div class="container my-2">
+    <h1>Create a user</h1>
+    
+    <% if @user.errors.any? %>
+        <div class="text-danger"> 
+            <ul> 
+                <% @user.errors.full_messages.each do |message| %> 
+                    <li><%= message %></li> 
+                <% end %> 
+            </ul> 
+        </div>     
+    <% end %>
+    
+    
+    <div class="row text-center">
+        <div class="col col-md-12">
+            <%= render 'form' %>
+        </div>
+    </div>
+</div>

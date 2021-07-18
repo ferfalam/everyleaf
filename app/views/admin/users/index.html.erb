@@ -1,0 +1,32 @@
+<div class="container text-center mt-3">
+    <h1>User list</h1>
+
+    <div>
+        <table class="table-hover w-100 text-left">
+            <thead>
+                <th>#</th>
+                <th>Email</th>
+                <th>users</th>
+                <th colspan="4"></th>
+            </thead>
+            <tbody>
+                <% @users.each do |user| %>
+                    <tr>
+                        <td> <%=user.id%> </td>
+                        <td class="user-name"> <%=user.email%> </td>
+                        <td> <%=user.tasks.count%> </td> 
+                        
+                        <% if user.admin %>
+                            <td><%= link_to 'Remove admin', user_role_admin_users_path(user), class:"btn btn-sm btn-outline-success" %></td>
+                        <% else %>
+                            <td><%= link_to 'Add to admin', user_role_admin_users_path(user), class:"btn btn-sm btn-outline-success" %></td>
+                        <% end %>                        
+                        <td><%= link_to 'Show', admin_user_path(user), class:"btn btn-sm btn-outline-success" %></td>
+                        <td><%= link_to 'Edit', edit_admin_user_path(user), class:"btn btn-sm btn-outline-warning" %></td>
+                        <td><%= link_to "Delete", admin_user_path(user), method: :delete, class:"btn btn-sm btn-outline-danger delete" %></td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>
