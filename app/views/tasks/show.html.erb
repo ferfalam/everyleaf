@@ -22,5 +22,15 @@
             <th class="text-right w-50">Priority</th>
             <td class="text-left w-50"> <%=@task.priority%> </td>
         </tr>
+        <tr>
+            <th class="text-right w-50">Tag(s)</th>
+            <td class="text-left w-50">
+                <ul>
+                    <% TagTask.where(task_id: @task.id).each do |tag_task| %>
+                        <li> <%= Tag.find(tag_task.tag_id).name%> </li>
+                    <% end %>
+                </ul>
+            </td>
+        </tr>
     </table>
 </div>

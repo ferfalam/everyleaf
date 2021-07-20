@@ -3,6 +3,7 @@ class Task < ApplicationRecord
 
     enum priority: {high:2, medium:1, low:0}
     belongs_to :user
+    has_many :tag_task, dependent: :destroy
 
     def self.name_search(name)
         @task = Task.where(name: name)

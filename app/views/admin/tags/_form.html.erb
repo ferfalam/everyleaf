@@ -1,0 +1,14 @@
+<%= form_with(model: @tag, local: true, url: edit_or_create_tag(@tag)) do |f| %>
+    <% if @tag.errors.any? %>
+        <ul class="text-danger">
+            <% @tag.errors.full_messages.each do |message| %>
+                <li> <%=message%> </li>
+            <% end %>
+        </ul>
+    <% end %>
+    <div class="form-group">
+        <%= f.label :name, "Name", class:"form-label" %> 
+        <%= f.text_field :name, class:"form-control" %> 
+    </div>
+    <%= f.submit class:"btn btn-lg btn-primary"%>
+<% end %>

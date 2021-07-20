@@ -18,7 +18,9 @@
             
             <% if current_user.admin %>
               <%= link_to  "Create user", new_admin_user_path, class:"btn btn-md btn-outline-primary mx-2" %>
-              <%= link_to  "Administration", admin_users_path, class:"btn btn-md btn-outline-primary mx-2" %>
+              <%= link_to  "Create tag", new_admin_tag_path, class:"btn btn-md btn-outline-primary mx-2" %>
+              <%= link_to  "Manage Users", admin_users_path, class:"btn btn-md btn-outline-primary mx-2" %>
+              <%= link_to  "Manage Tags", admin_tags_path, class:"btn btn-md btn-outline-primary mx-2" %>
             <% end %>
             
             <%= link_to  "New Task", new_task_path, class:"btn btn-md btn-outline-primary mx-2" %>

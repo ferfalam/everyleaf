@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :tasks
 
   namespace :admin do
+    resources :tags
     resources :users do
       collection do
         get "/role/:id", to: "users#role", as: "user_role"
