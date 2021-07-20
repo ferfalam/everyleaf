@@ -25,7 +25,7 @@ class Admin::TagsController < ApplicationController
 
   def update
     if @tag.update(tag_params)
-      redirect_to admin_tags_path, notice: "Tag created successfully"
+      redirect_to admin_tags_path, notice: "Tag updated successfully"
     else
       render :new
     end
