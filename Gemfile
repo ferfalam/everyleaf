@@ -14,12 +14,19 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'kaminari'
 gem 'faker'
-
+gem 'dotenv-rails' # Required to manipulate environment variables in the development environment
+gem 'unicorn' # Application server unicorn
+gem 'mini_racer', platforms: :ruby 
 
 
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
+  gem 'capistrano', '3.6.0' # set of tools for capistrano
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.8'
   gem 'factory_bot_rails'
