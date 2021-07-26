@@ -8,7 +8,7 @@ set :repo_url, 'https://github.com/ferfalam/everyleaf.git'
 # deployするブランチ。デフォルトでmainを使用している場合、masterをmainに変更してください。
 set :branch, ENV['BRANCH'] || 'master'
 # The directory to deploy to.
-set :deploy_to, '/var/www/dive_exam'
+set :deploy_to, '/var/www/dive-exam'
 # Folders/files with symbolic links
 set :linked_files, %w{.env config/secrets.yml}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/uploads}
