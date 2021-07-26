@@ -35,6 +35,22 @@
             <option value="low">low</option>
         </select>
     </div>
+    <div class="form-group form-check">
+        <% Tag.all.each do |tag| %>
+            <% checked_tag = [] %>
+            <% TagTask.where(task_id: @task.id).where(tag_id: tag.id).each do |tag_task| %>
+                <% checked_tag << tag.id%>
+            <% end %>
+            
+            <% if checked_tag.include?(tag.id) %>
+                <%= f.check_box :tag_ids, {multiple: true, checked: true, disabled: tag[:disabled], include_hidden: false}, tag[:id], class:"form-check-input"%>
+                <%= f.label :tag, tag.name, class:"form-check-label mr-4" %>
+            <% else %>
+                <%= f.check_box :tag_ids, {multiple: true, checked: false, disabled: tag[:disabled], include_hidden: false}, tag[:id], class:"form-check-input"%>
+                <%= f.label :tag, tag.name, class:"form-check-label mr-4" %>
+            <% end %>
+        <% end %>
+    </div>
     
     <%= f.submit class:"btn btn-lg btn-primary"%>
 <% end %>
