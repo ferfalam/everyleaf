@@ -14,9 +14,9 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'kaminari'
 gem 'faker'
+gem 'bootsnap', '>= 1.1.0', require: false
 gem 'dotenv-rails' # Required to manipulate environment variables in the development environment
 gem 'unicorn' # Application server unicorn
-gem 'bootsnap', '>= 1.1.0', require: false
 gem 'mini_racer', platforms: :ruby 
 
 group :development, :test do
