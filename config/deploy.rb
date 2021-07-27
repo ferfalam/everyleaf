@@ -1,14 +1,14 @@
 # config valid only for current version of Capistrano
 lock '3.6.0'
 # Application name to deploy
-set :application, 'dive-exam'
+set :application, 'diveexam'
 # git repository to clone
 # (Xxxxxxxx: user name, yyyyyyyy: application name)
 set :repo_url, 'https://github.com/ferfalam/everyleaf.git'
 # deployするブランチ。デフォルトでmainを使用している場合、masterをmainに変更してください。
 set :branch, ENV['BRANCH'] || 'master'
 # The directory to deploy to.
-set :deploy_to, '/var/www/dive-exam'
+set :deploy_to, '/var/www/diveexam'
 # Folders/files with symbolic links
 set :linked_files, %w{.env config/secrets.yml}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/uploads}
