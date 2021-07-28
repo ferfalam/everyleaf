@@ -17,6 +17,7 @@ gem 'faker'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'dotenv-rails' # Required to manipulate environment variables in the development environment
 gem 'unicorn' # Application server unicorn
+gem 'rake' , '>= 0.9.2'
 # gem 'mini_racer','>= 0', platforms: :ruby
 
 group :development, :test do
