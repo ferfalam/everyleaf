@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
-  database: everyleaf_production
-  username: everyleaf
-  password: <%= ENV['EVERYLEAF_DATABASE_PASSWORD'] %>
+  database: sample_production
+  username: sample
+  password: <%= ENV['SAMPLE_DATABASE_PASSWORD'] %>
+
